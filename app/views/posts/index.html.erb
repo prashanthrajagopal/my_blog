@@ -1,35 +1,19 @@
-<h1>Listing posts</h1>
+<%= link_to 'New Post', new_post_path %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Published on</th>
-      <th>Tags</th>
-      <th>Properties</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-        <td><%= post.published_on %></td>
-        <td><%= post.tags %></td>
-        <td><%= post.properties %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div id="posts">
+  <% @posts.each do|post| %>
+  <div id="post">
+    <h3><%= link_to post.title, post %></h3>
+    <%= post.published_on %>
+    <%= post.tags %>
+    <%= simple_format post.body %>
+    <small>
+      <%= link_to 'Edit', edit_post_path(post) %> |
+      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </small>
+  </div>
+  <% end %>
+</div>
 
 <%= link_to 'New Post', new_post_path %>
