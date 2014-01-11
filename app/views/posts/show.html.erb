@@ -4,10 +4,12 @@
       <h1><%= @post.title %></h1>
       <p><span class="glyphicon glyphicon-time"></span> <%= @post.published_on %></p>
       <%= @post.body %>
-      <small>
-        <%= link_to 'Edit', edit_post_path(@post) %> |
-        <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </small>
+      <% if user_signed_in? && current_user.is_blogger %>
+        <small>
+          <%= link_to 'Edit', edit_post_path(@post) %> |
+          <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </small>
+      <% end %>
     </div>
     <%= render 'posts/sidebar' %>
   </div>

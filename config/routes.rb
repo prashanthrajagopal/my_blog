@@ -1,5 +1,6 @@
 Prashanthr::Application.routes.draw do
   
+  devise_for :users
   get "static_page/about"
   root 'welcome#index'
   resources :posts
