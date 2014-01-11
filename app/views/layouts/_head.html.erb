@@ -4,9 +4,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Prashanth Rajagopal">
 <meta name="keywords" content="tech blog, blog, photography, prashanth's profile, Ruby on Rails, Ruby, Bash, Ubuntu, Mysql, Capistrano, Bundler, Puppet">
-<meta name="description" content="This site showcases my interests and things I found useful over the course of the past few years.">
-<title>Prashanth Rajagopal</title>
-<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Prashanthr" %>">
+
+<title><%= content_for?(:title) ? yield(:title) : "Prashanth Rajagopal" %></title>
+
+<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= csrf_meta_tags %>
 

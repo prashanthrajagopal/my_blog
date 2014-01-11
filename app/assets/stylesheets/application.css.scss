@@ -9,5 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require_tree ../landing-page/
+ *= require_tree ../font-awesome/css/
  *= require_tree .
  */
