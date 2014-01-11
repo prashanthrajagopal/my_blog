@@ -1,19 +1,23 @@
-<%= link_to 'New Post', new_post_path %>
-
-
-<div id="posts">
-  <% @posts.each do|post| %>
-  <div id="post">
-    <h3><%= link_to post.title, post %></h3>
-    <%= post.published_on %>
-    <%= post.tags %>
-    <%= simple_format post.body %>
-    <small>
-      <%= link_to 'Edit', edit_post_path(post) %> |
-      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </small>
+<%= link_to 'New Post', new_post_path, :class => "btn btn-primary glyphicon glyphicon-chevron-right" %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <% @posts.each do|post| %>
+        <!-- blog entry -->
+        <h1><%= link_to post.title, post %></h1>
+        <p><span class="glyphicon glyphicon-time"></span> <%= post.published_on %></p>
+        <small>
+          <%= link_to 'Edit', edit_post_path(post) %> |
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </small>
+      <% end %>
+      <!-- pager -->
+      <ul class="pager">
+        <li class="previous"><a href="#">&larr; Older</a></li>
+        <li class="next"><a href="#">Newer &rarr;</a></li>
+      </ul>
+    </div>
+    <%= render 'posts/sidebar' %>
   </div>
-  <% end %>
-</div>
-
-<%= link_to 'New Post', new_post_path %>  
+  <hr>
+</div><!-- /.container -->
