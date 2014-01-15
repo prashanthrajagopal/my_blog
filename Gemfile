@@ -42,3 +42,6 @@ group :development do
   gem 'rails_layout'
 end
 gem 'thin'
+gem 'rails_12factor', group: :production
+
+ruby "2.1.0"
