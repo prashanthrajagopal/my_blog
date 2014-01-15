@@ -44,6 +44,20 @@ section {
   margin-top: 20px;
   }
 
-body {
-  padding-top: 50px;
+.login-form {
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-control {
+  height: 43px;
+}
+
+.form-control:focus {
+  z-index: 3;
+}
+
+label {
+  color: #666;
 }
