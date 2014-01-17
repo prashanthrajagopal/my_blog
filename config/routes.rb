@@ -1,5 +1,9 @@
 Prashanthr::Application.routes.draw do
-  
+
+  resources :galleries do
+    resources :photos
+  end
+
   devise_for :users
   get "static_page/about"
   root 'welcome#index'

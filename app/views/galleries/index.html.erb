@@ -1,0 +1,48 @@
+<% if user_signed_in? && current_user.is_blogger %>
+  <%= link_to 'New', new_gallery_path, :class => "btn btn-primary glyphicon glyphicon-chevron-right" %>
+<% end %>
+<div class="container">
+  <div class="row">
+
+
+
+      <% @galleries.each do|gallery| %>
+        <div class="col-lg-12">
+          <h1><%= link_to gallery.title, gallery %></h1>
+          <p><span class="glyphicon glyphicon-time"></span> <%= gallery.created_at %></p>
+          <% if user_signed_in? && current_user.is_blogger %>
+            <small>
+              <%= link_to 'Edit', edit_gallery_path(gallery) %> |
+              <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </small>
+          <% end %>
+          <hr>
+        </div>
+
+        <% gallery.photos.each do|photo| %>
+          <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a class="fancybox thumbnail" rel=<%= gallery.title %> href=<%= photo.url %> title=<%= photo.title %>>
+              <img class="img-responsive" src=<%= photo.url %> alt=<%= photo.title %> />
+            </a>
+            <% if user_signed_in? && current_user.is_blogger %>
+              <small>
+                <%= link_to 'Edit', edit_gallery_photo_path(photo.gallery, photo) %> |
+                <%= link_to 'Destroy', gallery_photo_path(photo.gallery, photo), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </small>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+
+
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $(".fancybox").fancybox({
+      openEffect  : 'none',
+      closeEffect : 'none'
+    });
+  });
+</script>

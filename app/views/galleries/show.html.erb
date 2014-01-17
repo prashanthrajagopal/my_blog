@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_gallery_path(@gallery), :class => "btn btn-primary glyphicon glyphicon-chevron-right" %> |
+<%= link_to 'Back', galleries_path, :class => "btn btn-primary glyphicon glyphicon-chevron-right" %>
+<hr>
+<% if user_signed_in? && current_user.is_blogger %>
+	<%= link_to 'Upload', new_gallery_photo_path(@gallery), :class => "btn btn-primary glyphicon glyphicon-chevron-right" %>
+<% end %>
+<hr>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <% @gallery.photos.each do|photo| %>
+        <h1><%= link_to photo.title, gallery_photo_path(photo.gallery, photo) %></h1>
+        <% if user_signed_in? && current_user.is_blogger %>
+    		  <%= link_to 'Edit', edit_gallery_photo_path(photo.gallery, photo) %> |
+    		  <%= link_to 'Destroy', gallery_photo_path(photo.gallery, photo), method: :delete, data: { confirm: 'Are you sure?' } %>
+    		<% end %>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+</div>
